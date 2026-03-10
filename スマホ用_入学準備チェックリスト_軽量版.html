@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>小学1年生 入学準備チェックリスト（軽量版）</title>
+<style>
+body {
+  margin: 0;
+  background: #f5f7fb;
+  color: #1f2937;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+}
+.wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 16px 14px 40px;
+}
+h1 {
+  font-size: 24px;
+  line-height: 1.35;
+  margin: 0 0 10px;
+}
+.desc {
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+.status {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+}
+.count {
+  font-size: 20px;
+  font-weight: 700;
+}
+.bar {
+  height: 10px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+.fill {
+  height: 100%;
+  width: 0%;
+  background: #10b981;
+}
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+button {
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 15px;
+  font-weight: 700;
+  color: white;
+  background: #2563eb;
+}
+button.sub {
+  background: #374151;
+}
+.card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+}
+h2 {
+  font-size: 18px;
+  margin: 6px 4px 10px;
+}
+.row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px 6px;
+  border-top: 1px solid #e5e7eb;
+}
+.row:first-of-type {
+  border-top: 0;
+}
+input[type="checkbox"] {
+  width: 28px;
+  height: 28px;
+  margin: 2px 0 0;
+  flex: 0 0 28px;
+}
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.name {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+.note {
+  font-size: 13px;
+  color: #4b5563;
+  line-height: 1.55;
+}
+.done .name, .done .note {
+  color: #9ca3af;
+  text-decoration: line-through;
+}
+.foot {
+  color: #6b7280;
+  font-size: 12px;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>小学1年生 入学準備チェックリスト（軽量版）</h1>
+  <div class="desc">Safariで開くと動きやすい軽量版です。タップでチェック、完了数も更新されます。</div>
+
+  <div class="status">
+    <div class="count"><span id="done">0</span> / <span id="total">0</span> 完了</div>
+    <div class="bar"><div id="fill" class="fill"></div></div>
+  </div>
+
+  <div class="actions">
+    <button onclick="checkHome()">家で用意するものを全部チェック</button>
+    <button class="sub" onclick="clearAll()">チェックを全部外す</button>
+  </div>
+
+  <section class="card"><h2>家で用意するもの</h2><label class="row"><input type="checkbox" id="c1" onchange="update()"><span class="text"><span class="name">通学用かばん</span><span class="note">自立するもの／学校専用／ランドセルでなくても軽いかばんでも可</span></span></label><label class="row"><input type="checkbox" id="c2" onchange="update()"><span class="text"><span class="name">ふで箱</span><span class="note">金物不可／シンプル／無地（手書きメモ: 6年間使う想定・箱型・キャラ物でなくてよさそう）</span></span></label><label class="row"><input type="checkbox" id="c3" onchange="update()"><span class="text"><span class="name">消しゴム</span><span class="note">学習用／無地／よく消えるもの</span></span></label><label class="row"><input type="checkbox" id="c4" onchange="update()"><span class="text"><span class="name">鉛筆5本</span><span class="note">2B／六角形</span></span></label><label class="row"><input type="checkbox" id="c5" onchange="update()"><span class="text"><span class="name">赤青鉛筆1本</span></span></label><label class="row"><input type="checkbox" id="c6" onchange="update()"><span class="text"><span class="name">下じき</span><span class="note">無地（手書きメモにサイズ注意らしき記載あり・判読不明）</span></span></label><label class="row"><input type="checkbox" id="c7" onchange="update()"><span class="text"><span class="name">雑巾</span></span></label><label class="row"><input type="checkbox" id="c8" onchange="update()"><span class="text"><span class="name">給食袋</span></span></label><label class="row"><input type="checkbox" id="c9" onchange="update()"><span class="text"><span class="name">ランチョンマット</span></span></label><label class="row"><input type="checkbox" id="c10" onchange="update()"><span class="text"><span class="name">口拭き用タオル</span></span></label><label class="row"><input type="checkbox" id="c11" onchange="update()"><span class="text"><span class="name">校帽</span><span class="note">学校指定</span></span></label><label class="row"><input type="checkbox" id="c12" onchange="update()"><span class="text"><span class="name">体育着</span><span class="note">推奨</span></span></label><label class="row"><input type="checkbox" id="c13" onchange="update()"><span class="text"><span class="name">赤白帽子</span><span class="note">つばあり・つばなしどちらでも可</span></span></label><label class="row"><input type="checkbox" id="c14" onchange="update()"><span class="text"><span class="name">上履き</span><span class="note">推奨</span></span></label><label class="row"><input type="checkbox" id="c15" onchange="update()"><span class="text"><span class="name">防災頭巾</span></span></label><label class="row"><input type="checkbox" id="c16" onchange="update()"><span class="text"><span class="name">防災頭巾カバー</span></span></label><label class="row"><input type="checkbox" id="c17" onchange="update()"><span class="text"><span class="name">体育着袋</span><span class="note">体育着と赤白帽子を入れる／上をひもでしぼる巾着タイプ</span></span></label><label class="row"><input type="checkbox" id="c18" onchange="update()"><span class="text"><span class="name">上履き袋</span></span></label><label class="row"><input type="checkbox" id="c19" onchange="update()"><span class="text"><span class="name">手提げバッグ</span><span class="note">毎週末の持ち帰り用／体育着袋・上履き袋が入る大きさ／床につかない大きさ／折りたためる素材</span></span></label></section><section class="card"><h2>学校で配られるもの（家で買わなくてOK）</h2><label class="row"><input type="checkbox" id="c20" onchange="update()"><span class="text"><span class="name">ノート</span><span class="note">入学式の日に配布</span></span></label><label class="row"><input type="checkbox" id="c21" onchange="update()"><span class="text"><span class="name">クレヨン</span><span class="note">入学式の日に配布</span></span></label><label class="row"><input type="checkbox" id="c22" onchange="update()"><span class="text"><span class="name">はさみ</span><span class="note">入学式の日に配布</span></span></label><label class="row"><input type="checkbox" id="c23" onchange="update()"><span class="text"><span class="name">のり</span><span class="note">入学式の日に配布</span></span></label><label class="row"><input type="checkbox" id="c24" onchange="update()"><span class="text"><span class="name">色鉛筆</span><span class="note">入学式の日に配布</span></span></label><label class="row"><input type="checkbox" id="c25" onchange="update()"><span class="text"><span class="name">算数ブロック</span><span class="note">入学式の日に配布</span></span></label><label class="row"><input type="checkbox" id="c26" onchange="update()"><span class="text"><span class="name">道具箱</span><span class="note">入学式の日に配布</span></span></label><label class="row"><input type="checkbox" id="c27" onchange="update()"><span class="text"><span class="name">連絡帳</span><span class="note">入学式の日に配布</span></span></label><label class="row"><input type="checkbox" id="c28" onchange="update()"><span class="text"><span class="name">連絡袋</span><span class="note">入学式の日に配布</span></span></label></section><section class="card"><h2>記名・準備</h2><label class="row"><input type="checkbox" id="c29" onchange="update()"><span class="text"><span class="name">全ての持ち物に記名</span><span class="note">平仮名で記名／油性マジック・名前シール可</span></span></label><label class="row"><input type="checkbox" id="c30" onchange="update()"><span class="text"><span class="name">バッグ類の記名</span><span class="note">内側に平仮名で記名</span></span></label><label class="row"><input type="checkbox" id="c31" onchange="update()"><span class="text"><span class="name">体育着の名札布</span><span class="note">要マークの下に縦5cm×横8cmの布を縫い付け、平仮名で姓だけ記名</span></span></label><label class="row"><input type="checkbox" id="c32" onchange="update()"><span class="text"><span class="name">上履きの運用</span><span class="note">平日は学校に置き、週末持ち帰って洗う</span></span></label></section>
+
+  <div class="foot">印刷本文ベースで作成。手書きメモは読めた範囲のみ補足。</div>
+</div>
+
+<script>
+function allBoxes() {
+  return Array.prototype.slice.call(document.querySelectorAll('input[type="checkbox"]'));
+}
+
+function update() {
+  var boxes = allBoxes();
+  var done = 0;
+  for (var i = 0; i < boxes.length; i++) {
+    if (boxes[i].checked) done++;
+    var row = boxes[i].parentNode;
+    if (boxes[i].checked) row.classList.add('done');
+    else row.classList.remove('done');
+  }
+  document.getElementById('done').textContent = String(done);
+  document.getElementById('total').textContent = String(boxes.length);
+  document.getElementById('fill').style.width = (boxes.length ? done * 100 / boxes.length : 0) + '%';
+  save();
+}
+
+function save() {
+  var boxes = allBoxes();
+  var state = [];
+  for (var i = 0; i < boxes.length; i++) {
+    state.push(boxes[i].checked ? '1' : '0');
+  }
+  try {
+    localStorage.setItem('school_checklist_light_v1', state.join(','));
+  } catch (e) {}
+}
+
+function load() {
+  var boxes = allBoxes();
+  var raw = '';
+  try {
+    raw = localStorage.getItem('school_checklist_light_v1') || '';
+  } catch (e) {}
+  if (raw) {
+    var arr = raw.split(',');
+    for (var i = 0; i < boxes.length && i < arr.length; i++) {
+      boxes[i].checked = arr[i] === '1';
+    }
+  }
+  update();
+}
+
+function clearAll() {
+  var boxes = allBoxes();
+  for (var i = 0; i < boxes.length; i++) boxes[i].checked = false;
+  update();
+}
+
+function checkHome() {
+  var cards = document.querySelectorAll('.card');
+  for (var c = 0; c < cards.length; c++) {
+    var h = cards[c].querySelector('h2');
+    if (h && h.textContent.indexOf('学校で配られるもの') === -1) {
+      var boxes = cards[c].querySelectorAll('input[type="checkbox"]');
+      for (var i = 0; i < boxes.length; i++) boxes[i].checked = true;
+    }
+  }
+  update();
+}
+
+window.onload = load;
+</script>
+</body>
+</html>
